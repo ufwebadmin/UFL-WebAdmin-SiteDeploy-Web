@@ -1,2 +1,25 @@
 ---
-name: UFL::WebAdmin::SiteDeploy::Web
+name:         SiteDeploy
+encoding:     UTF-8
+default_view: HTML
+
+authentication:
+  default_realm: users
+  realms:
+    users:
+      credential:
+        class:         Password
+        password_type: none
+      store:
+        class: Null
+
+Controller::Authentication:
+  use_login_form:  0
+  use_environment: 1
+  logout_uri:      http://login.gatorlink.ufl.edu/quit.cgi
+
+View::HTML:
+  PRE_CHOMP: 1
+  WRAPPER:   wrapper.tt
+  VARIABLES: &ttvariables
+    datetime_format: %a, %B %e, %Y %l:%M %p

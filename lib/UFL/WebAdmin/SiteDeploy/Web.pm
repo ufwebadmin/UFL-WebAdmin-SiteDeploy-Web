@@ -2,39 +2,21 @@ package UFL::WebAdmin::SiteDeploy::Web;
 
 use strict;
 use warnings;
-
-use Catalyst::Runtime '5.70';
-
-# Set flags and add plugins for the application
-#
-#         -Debug: activates the debug mode for very useful log messages
-#   ConfigLoader: will load the configuration from a YAML file in the
-#                 application's home directory
-# Static::Simple: will serve static files from the application's root 
-#                 directory
-
 use parent qw/Catalyst/;
 
 our $VERSION = '0.01';
 
-# Configure the application. 
-#
-# Note that settings in ufl_webadmin_sitedeploy_web.yml (or other external
-# configuration file that you set up manually) take precedence
-# over this when using ConfigLoader. Thus configuration
-# details given here can function as a default configuration,
-# with a external configuration file acting as an override for
-# local deployment.
-
-__PACKAGE__->config( name => 'UFL::WebAdmin::SiteDeploy::Web' );
-
-# Start the application
-__PACKAGE__->setup(qw/-Debug ConfigLoader Static::Simple/);
-
+__PACKAGE__->setup(qw/
+    ConfigLoader
+    Authentication
+    StackTrace
+    Static::Simple
+    Unicode::Encoding
+/);
 
 =head1 NAME
 
-UFL::WebAdmin::SiteDeploy::Web - Catalyst based application
+UFL::WebAdmin::SiteDeploy::Web - Web site deployment via a Web interface
 
 =head1 SYNOPSIS
 
@@ -42,19 +24,28 @@ UFL::WebAdmin::SiteDeploy::Web - Catalyst based application
 
 =head1 DESCRIPTION
 
-[enter your description here]
+This application interfaces with L<UFL::WebAdmin::SiteDeploy> and a
+Subversion repository to simplify releasing changes to a Web site.
 
 =head1 SEE ALSO
 
-L<UFL::WebAdmin::SiteDeploy::Web::Controller::Root>, L<Catalyst>
+=over 4
+
+=item * L<UFL::WebAdmin::SiteDeploy::Web::Controller::Root>
+
+=item * L<UFL::WebAdmin::SiteDeploy>
+
+=item * L<Catalyst>
+
+=back
 
 =head1 AUTHOR
 
-Catalyst developer
+Daniel Westermann-Clark E<lt>dwc@ufl.eduE<gt>
 
 =head1 LICENSE
 
-This library is free software, you can redistribute it and/or modify
+This program is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
 
 =cut

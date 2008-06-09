@@ -3,15 +3,24 @@ use inc::Module::Install;
 name 'UFL-WebAdmin-SiteDeploy-Web';
 all_from 'lib/UFL/WebAdmin/SiteDeploy/Web.pm';
 
-requires 'Catalyst::Runtime' => '5.7012';
-requires 'Catalyst::Plugin::ConfigLoader';
-requires 'Catalyst::Plugin::Static::Simple';
+requires 'Catalyst' => '5.7012';
 requires 'Catalyst::Action::RenderView';
+requires 'Catalyst::Plugin::Authentication';
+requires 'Catalyst::Plugin::ConfigLoader';
+requires 'Catalyst::Plugin::StackTrace';
+requires 'Catalyst::Plugin::Static::Simple';
+requires 'Catalyst::Plugin::Unicode::Encoding';
+requires 'Catalyst::View::TT';
 requires 'parent';
-requires 'YAML'; # This should reflect the config file format you've chosen
-                 # See Catalyst::Plugin::ConfigLoader for supported formats
+requires 'UFL::Controller::Authentication' => '0.02';
+requires 'YAML';
+
+build_requires 'Catalyst::Test';
+build_requires 'Test::More';
+build_requires 'Test::YAML::Valid';
+
 catalyst;
 
 install_script glob('script/*.pl');
-auto_install;
+
 WriteAll;

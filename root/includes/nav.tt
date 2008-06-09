@@ -1,0 +1,8 @@
+[% BLOCK nav_link %]
+<li[% IF c.req.uri.match("^$uri") %] id="active"[% END %]><a href="[% uri | html %]">[% label | html %]</a></li>
+[% END -%]
+
+<ul id="nav">
+[% FILTER indent('  ') %]
+[% END %]
+</ul><!-- #nav -->

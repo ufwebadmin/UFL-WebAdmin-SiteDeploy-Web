@@ -1,0 +1,11 @@
+[% SET title = 'Error' -%]
+
+<p>We're sorry, but an error occurred. Please try again. If the problem persists, please email <a href="mailto:[% c.config.email.admin_address | html %]">[% c.config.email.admin_address | html %]</a> with the URL, the time of the error, and any text below.</p>
+
+[% IF errors %]
+<ul id="errors">
+  [% FOREACH error IN errors %]
+  <li><strong>Error</strong>: [% error | trim | html %]</li>
+  [% END %]
+</ul>
+[% END %]

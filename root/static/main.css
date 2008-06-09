@@ -1,0 +1,413 @@
+* {margin:0;padding:0;}
+
+*:target {
+background:#ffc !important;
+}
+
+body {
+background:#FFF url(images/bg.gif) repeat-x;
+color:#444;
+font:63.125%/200% 'Trebuchet MS', verdana, geneva, Arial, Helvetica, sans-serif;
+text-align:center;
+}
+
+a:link,a:visited {
+border-bottom:1px solid #0045c4;
+color:#0021a5;
+text-decoration:none;
+}
+
+a:hover,a:active {
+border-bottom:1px solid #ff4a00;
+color:#ff4a00;
+}
+
+dl#statuses dd {
+width:500px;
+}
+
+dl#statuses dt {
+width:250px;
+}
+
+h3 {
+background:#fff url(images/bg_dir_heading.gif) bottom repeat-x;
+border:3px double #ccc;
+clear:both;
+color:#333;
+font-size:1.2em;
+margin:15px 0 5px;
+padding:5px;
+text-align:left;
+}
+
+h4,h5,h6 {
+text-align:left;
+padding:5px;
+}
+
+h4 {
+font-size:1.05em;
+}
+
+h5 {
+font-size:1em;
+}
+
+p,li,form {
+text-align:left;
+}
+
+#container {
+font-size:1.4em;
+margin:0 auto;
+width:770px;
+}
+
+#content dd {
+border-bottom:1px solid #ccc;
+float:right;
+padding:3px 0;
+text-align:left;
+width:650px;
+}
+
+#content dt {
+border-bottom:1px solid #ccc;
+clear:left;
+float:left;
+font-weight:700;
+padding:3px 0 3px 3px;
+text-align:left;
+width:100px;
+}
+
+#content fieldset {
+border:0;
+border-bottom:1px solid #eee;
+margin:5px 0 10px;
+padding-bottom:5px;
+}
+
+#content form {
+margin-left:5px;
+}
+
+#content form.reports p.clear {
+text-align:right;
+margin:0;
+}
+
+#content form.reports p.clear a {
+border:0;
+background:transparent url(images/clear.png) no-repeat left;
+padding-left:18px;
+}
+
+#content form.reports select.multiple {
+margin-bottom:0;
+}
+
+#content form.process-steps {
+margin:0 0 10px;
+padding:5px 0 10px;
+}
+
+#content form.process-steps input {
+display:inline;
+float:left;
+margin:0;
+padding:0;
+}
+
+#content form.process-steps-down {
+padding-bottom:30px;
+}
+
+#content form.roles input {
+clear:none;
+display:inline;
+float:left;
+width:auto;
+margin:2px 0 10px;
+}
+
+#content h2 {
+display:none;
+}
+
+#content input,#content select,#content textarea {
+clear:both;
+display:block;
+font-size:1em;
+margin:0 0 10px;
+width:80%;
+}
+
+#content input.submit {
+width:auto;
+}
+
+#content input.day {
+width:2em;
+}
+
+#content select.month {
+width:auto;
+display:inline;
+margin:0;
+}
+
+#content input.year {
+width:4em;
+}
+
+#content input.inactive {
+color:#ccc;
+}
+
+#content .date input, #content .date_range input {
+clear:none;
+display:inline;
+margin:0;
+}
+
+#content .expandable h4, #content .expandable legend {
+background:transparent none no-repeat scroll left;
+cursor:default;
+padding-left:18px;
+}
+
+#content .expanded h4, #content .expanded legend {
+background-image:url(images/expanded.gif);
+}
+
+#content .collapsed h4, #content .collapsed legend {
+background-image:url(images/collapsed.gif);
+}
+
+#content label.checkbox {
+margin-right:12px;
+}
+
+#content label.checkbox input,#content label.radio input {
+display:inline;
+height:14px;
+width:14px;
+margin:0 4px 2px 0;
+}
+
+#content label.radio {
+clear:both;
+display:block;
+height:1.4em;
+}
+
+#content label.radio input {
+margin-bottom:-2px;
+}
+
+#content fieldset#search label {
+margin-right: 12px;
+}
+
+#content fieldset#search select {
+display:inline;
+margin: 0pt 4px 2px 0pt;
+width: 200px;
+}
+
+#content fieldset#search input {
+display:inline;
+margin: 0pt 4px 2px 0pt;
+width: 400px;
+}
+
+#content fieldset#search input.submit {
+display: inline;
+margin: 0pt 4px 2px 0pt;
+width: 40px;
+}
+
+#content legend {
+color:#444;
+}
+
+#content li {
+clear:both;
+margin:5px 0;
+}
+
+#content p {
+clear:both;
+margin:0 5px 10px;
+}
+
+#content table {
+border-collapse:collapse;
+font-size:1em;
+margin:0 0 25px;
+width:100%;
+}
+
+#content td {
+padding:5px;
+text-align:left;
+}
+
+#content textarea {
+height:15em;
+}
+
+#content th {
+border-bottom:3px solid #aaa;
+padding:0 5px;
+text-align:left;
+}
+
+#content tr {
+border-bottom:1px solid #ccc;
+}
+
+#content ul,#content ol {
+margin:0 25px 10px;
+}
+
+#content ul.paging {
+display:block;
+height:30px;
+}
+
+#content ul.paging li {
+display:inline;
+list-style:none;
+}
+
+/* Need an additional hook to make the boxes work in IE */
+#content ul.paging li span, #content ul.paging li a {
+border:1px solid #eee;
+margin:0 0 0 5px;
+padding:0 5px;
+text-align:left;
+}
+
+#content ul.paging li.prev {
+margin-right:5px;
+}
+
+#content ul.paging li.next {
+margin-left:10px;
+}
+
+#content ul.paging li.prev span, #content ul.paging li.next span {
+color:#ddd;
+}
+
+#content ul.paging li a:hover {
+background:#eee;
+}
+
+#content .description {
+text-align:left;
+}
+
+#header {
+position:relative;
+width:770px;
+}
+
+#header h1 {
+font-size:14px;
+height:30px;
+overflow:hidden;
+position:relative;
+width:138px;
+}
+
+#header h1 a span {
+background:url(images/unitHeader.gif) no-repeat;
+cursor:hand;
+display:block;
+height:100%;
+left:0;
+position:absolute;
+top:0;
+width:100%;
+}
+
+#header p {
+color:#fff;
+font-size:.9em;
+position:absolute;
+right:0;
+top:5px;
+}
+
+#header p a {
+border:none;
+color:#fff;
+padding:2px;
+text-decoration:underline;
+}
+
+#header p a:hover {
+background:#fff;
+color:#000;
+}
+
+#header p a.user {
+font-weight:bold;
+text-decoration:none;
+}
+
+#header,.directories h3 {
+text-align:left;
+}
+
+#nav {
+display:block;
+height:30px;
+margin-bottom:20px;
+}
+
+#nav li {
+display:inline;
+list-style:none;
+}
+
+#nav li a {
+border:3px solid #d1d1d1;
+border-width:3px 3px 0;
+display:block;
+float:left;
+font-size:1em;
+margin:0 5px 5px 0;
+padding:0 5px;
+text-align:left;
+}
+
+#nav li a:hover {
+border-bottom:3px solid #555;
+color:#ff4a00;
+}
+
+#nav li#active a {
+border-bottom:3px solid #000;
+color:#000;
+font-weight:700;
+}
+
+#note {
+clear:both;
+font-size:1.2em;
+margin:0 auto;
+width:40em;
+}
+
+.even {
+background:#eee;
+}
+
+.error {
+color: #FF0000;
+}

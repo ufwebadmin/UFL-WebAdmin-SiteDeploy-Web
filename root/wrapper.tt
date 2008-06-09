@@ -1,0 +1,4 @@
+[% DEFAULT wrapper = template.wrapper OR 'wrappers/default.tt' %]
+[% WRAPPER $wrapper %]
+  [% content %]
+[% END -%]

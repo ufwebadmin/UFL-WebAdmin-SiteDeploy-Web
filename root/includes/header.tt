@@ -1,0 +1,42 @@
+[% DEFAULT
+   stylesheets = [ c.uri_for('/static/main.css') ]
+   scripts     = []
+-%]
+<?xml version="1.0" encoding="[% c.config.encoding || 'UTF-8' | html %]"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+[% SET title_parts = [ c.config.name, title ] %]
+    <title>[% title_parts.grep('.').join(' - ') | html %]</title>
+    <meta name="generator" content="[% c.config.name _ ' ' _ c.VERSION %]" />
+    <meta http-equiv="Content-Type" content="text/html; charset=[% c.config.encoding || 'UTF-8' | html %]" />
+[% FOREACH stylesheet IN stylesheets %]
+    <link rel="stylesheet" type="text/css" href="[% stylesheet | html %]" />
+[% END %]
+    <!--[if IE]>
+      <link rel="stylesheet" type="text/css" href="[% c.uri_for('/static/ie.css') | html %]" />
+    <![endif]-->
+[% FOREACH script IN scripts %]
+    <script type="text/javascript" src="[% script | html %]"></script>
+[% END %]
+[% IF snippets %]
+    <script type="text/javascript">
+
+  [% FILTER indent('      ') %]
+    [% snippets.join("\n") | html %]
+  [% END %]
+    </script>
+[% END %]
+  </head>
+  <body>
+    <div id="container">
+      <div id="header">
+        <h1><a href="[% c.uri_for('/') | html %]">[% c.config.name | html %]<span></span></a></h1>
+[% IF c.user_exists %]
+        <p>Logged in as <strong>[% c.user.id | html %]</strong> (<a href="[% c.uri_for('/logout') | html %]">Logout</a>)</p>
+[% END %]
+      </div><!-- #header -->
+
+[% FILTER indent('      ') %]
+  [% INCLUDE includes/nav.tt %]
+[% END -%]

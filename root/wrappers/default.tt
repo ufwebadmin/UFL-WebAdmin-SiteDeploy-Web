@@ -1,0 +1,14 @@
+[% INCLUDE includes/header.tt -%]
+
+      <div id="content">
+[% FILTER indent('        ') %]
+  [% INCLUDE includes/form_errors.tt %]
+  [% IF title %]
+<h2>[% title | html %]</h2>
+
+  [% END %]
+  [% content || "\n" %]
+[% END -%]
+      </div><!-- #content -->
+
+[% INCLUDE includes/footer.tt -%]
