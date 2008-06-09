@@ -13,6 +13,7 @@ requires 'Catalyst::Plugin::Unicode::Encoding';
 requires 'Catalyst::View::TT';
 requires 'parent';
 requires 'UFL::Controller::Authentication' => '0.02';
+requires 'UFL::WebAdmin::SiteDeploy::Repository::SVN';
 requires 'YAML';
 
 build_requires 'Catalyst::Test';
