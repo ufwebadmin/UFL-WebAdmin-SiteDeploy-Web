@@ -14,6 +14,7 @@ requires 'Catalyst::View::TT';
 requires 'parent';
 requires 'UFL::Controller::Authentication' => '0.02';
 requires 'UFL::WebAdmin::SiteDeploy::Repository::SVN';
+requires 'UFL::WebAdmin::SiteDeploy::Site';
 requires 'YAML';
 
 build_requires 'Catalyst::Test';

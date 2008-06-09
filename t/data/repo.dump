@@ -1,0 +1,208 @@
+SVN-fs-dump-format-version: 2
+
+UUID: bc350615-d861-4e21-ab90-263e2da6b8a5
+
+Revision-number: 0
+Prop-content-length: 56
+Content-length: 56
+
+K 8
+svn:date
+V 27
+2008-06-09T21:26:50.817098Z
+PROPS-END
+
+Revision-number: 1
+Prop-content-length: 126
+Content-length: 126
+
+K 7
+svn:log
+V 28
+Initial repository structure
+K 10
+svn:author
+V 3
+dwc
+K 8
+svn:date
+V 27
+2008-06-09T21:39:26.296100Z
+PROPS-END
+
+Node-path: www.ufl.edu
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: www.ufl.edu/branches
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: www.ufl.edu/tags
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: www.ufl.edu/trunk
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: www.webadmin.ufl.edu
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: www.webadmin.ufl.edu/branches
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: www.webadmin.ufl.edu/tags
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: www.webadmin.ufl.edu/trunk
+Node-kind: dir
+Node-action: add
+Prop-content-length: 10
+Content-length: 10
+
+PROPS-END
+
+
+Revision-number: 2
+Prop-content-length: 112
+Content-length: 112
+
+K 7
+svn:log
+V 14
+Add some files
+K 10
+svn:author
+V 3
+dwc
+K 8
+svn:date
+V 27
+2008-06-09T21:39:58.236374Z
+PROPS-END
+
+Node-path: www.ufl.edu/trunk/index.html
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 0
+Text-content-md5: d41d8cd98f00b204e9800998ecf8427e
+Content-length: 10
+
+PROPS-END
+
+
+Node-path: www.webadmin.ufl.edu/trunk/index.html
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 0
+Text-content-md5: d41d8cd98f00b204e9800998ecf8427e
+Content-length: 10
+
+PROPS-END
+
+
+Revision-number: 3
+Prop-content-length: 110
+Content-length: 110
+
+K 7
+svn:log
+V 12
+Create a tag
+K 10
+svn:author
+V 3
+dwc
+K 8
+svn:date
+V 27
+2008-06-09T21:40:18.368747Z
+PROPS-END
+
+Node-path: www.ufl.edu/tags/200806091740
+Node-kind: dir
+Node-action: add
+Node-copyfrom-rev: 1
+Node-copyfrom-path: www.ufl.edu/trunk
+
+
+Node-path: www.ufl.edu/tags/200806091740/index.html
+Node-kind: file
+Node-action: add
+Node-copyfrom-rev: 2
+Node-copyfrom-path: www.ufl.edu/trunk/index.html
+
+
+Revision-number: 4
+Prop-content-length: 110
+Content-length: 110
+
+K 7
+svn:log
+V 12
+Create a tag
+K 10
+svn:author
+V 3
+dwc
+K 8
+svn:date
+V 27
+2008-06-09T21:40:31.420714Z
+PROPS-END
+
+Node-path: www.webadmin.ufl.edu/tags/200806091740
+Node-kind: dir
+Node-action: add
+Node-copyfrom-rev: 1
+Node-copyfrom-path: www.webadmin.ufl.edu/trunk
+
+
+Node-path: www.webadmin.ufl.edu/tags/200806091740/index.html
+Node-kind: file
+Node-action: add
+Node-copyfrom-rev: 2
+Node-copyfrom-path: www.webadmin.ufl.edu/trunk/index.html
+
+
