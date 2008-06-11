@@ -35,8 +35,8 @@ sub sites {
     my $contents = $self->client->ls($self->uri, 'HEAD', 0);
 
     my @sites = map {
-        UFL::WebAdmin::SiteDeploy::Site->new(uri => $_)
-    } keys %$contents;
+        UFL::WebAdmin::SiteDeploy::Site->new(uri => "http://$_/")
+    } sort keys %$contents;
 
     return @sites;
 }
