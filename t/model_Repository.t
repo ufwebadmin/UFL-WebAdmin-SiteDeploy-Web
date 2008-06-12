@@ -21,34 +21,34 @@ diag("repo_dir = [$REPO_DIR], repo_uri = [$REPO_URI]");
 $TEST_REPO->init;
 ok(-d $REPO_DIR, 'repository directory created');
 
-my $repo = UFL::WebAdmin::SiteDeploy::Web::Model::Repository->new(uri => $REPO_URI);
-isa_ok($repo, 'Catalyst::Model');
-isa_ok($repo, 'UFL::WebAdmin::SiteDeploy::Repository::SVN');
-isa_ok($repo, 'UFL::WebAdmin::SiteDeploy::Repository');
+my $model = UFL::WebAdmin::SiteDeploy::Web::Model::Repository->new(uri => $REPO_URI);
+isa_ok($model, 'Catalyst::Model');
+isa_ok($model, 'UFL::WebAdmin::SiteDeploy::Repository::SVN');
+isa_ok($model, 'UFL::WebAdmin::SiteDeploy::Repository');
 
-isa_ok($repo->uri, 'URI::file');
-is($repo->uri, $REPO_URI, "repository URI is $REPO_URI");
-is($repo->uri->path, $REPO_DIR, "translated repository path is $REPO_DIR");
+isa_ok($model->uri, 'URI::file');
+is($model->uri, $REPO_URI, "repository URI is $REPO_URI");
+is($model->uri->path, $REPO_DIR, "translated repository path is $REPO_DIR");
 
-isa_ok($repo->client, 'SVN::Client');
+isa_ok($model->client, 'SVN::Client');
 
-my $entries = $repo->entries;
+my $entries = $model->entries;
 is(scalar keys %$entries, 2, 'repository contains two entries');
 
 test_site(
-    $repo->site('www.ufl.edu'),
+    $model->site('www.ufl.edu'),
     'http://www.ufl.edu/',
     1,
 );
 
 test_site(
-    $repo->site('www.webadmin.ufl.edu'),
+    $model->site('www.webadmin.ufl.edu'),
     'http://www.webadmin.ufl.edu/',
     1,
 );
 
 eval {
-    $repo->site('this-does-not-exist.ufl.edu')
+    $model->site('this-does-not-exist.ufl.edu')
 };
 like($@, qr/Site this-does-not-exist.ufl.edu not found in repository $REPO_URI/, "got an error message for nonexistent site");
 
