@@ -1,6 +1,7 @@
 package UFL::WebAdmin::SiteDeploy::Web::Model::Repository;
 
 use Moose;
+use Carp;
 use UFL::WebAdmin::SiteDeploy::Site;
 
 extends 'UFL::WebAdmin::SiteDeploy::Repository::SVN',
@@ -13,7 +14,6 @@ UFL::WebAdmin::SiteDeploy::Web::Model::Repository - A repository containing site
 =head1 SYNOPSIS
 
     my $repo = $c->model('Repository');
-    my @sites = $repo->sites;
 
 =head1 DESCRIPTION
 
@@ -22,23 +22,29 @@ using Subversion as the revision control system.
 
 =head1 METHODS
 
-=head2 sites
+=head2 site
 
-Return a list of L<UFL::WebAdmin::SiteDeploy::Site>s stored in this
+Return the L<UFL::WebAdmin::SiteDeploy::Site> corresponding to the
+specified host. An error is thrown if the site does not exist in the
 repository.
+
+    $repository->site('www.ufl.edu');
 
 =cut
 
-sub sites {
-    my ($self) = @_;
+sub site {
+    my ($self, $host) = @_;
 
-    my $contents = $self->client->ls($self->uri, 'HEAD', 0);
+    my $entries = $self->entries;
+    croak "Site $host not found in repository " . $self->uri
+        unless $entries->{$host};
 
-    my @sites = map {
-        UFL::WebAdmin::SiteDeploy::Site->new(uri => "http://$_/")
-    } sort keys %$contents;
+    my $site = UFL::WebAdmin::SiteDeploy::Site->new(
+        uri => "http://$host/",
+        repository => $self,
+    );
 
-    return @sites;
+    return $site;
 }
 
 =head1 SEE ALSO

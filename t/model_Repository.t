@@ -5,7 +5,7 @@ use warnings;
 use FindBin;
 use Path::Class;
 use SVN::Client;
-use Test::More tests => 10 + 2*4;
+use Test::More tests => 10 + 2*4 + 1;
 use UFL::WebAdmin::SiteDeploy::TestRepository;
 
 BEGIN {
@@ -35,21 +35,25 @@ is($repo->uri->path, $REPO_DIR, "translated repository path is $REPO_DIR");
 
 isa_ok($repo->client, 'SVN::Client');
 
-my @sites = $repo->sites;
-is(scalar @sites, 2, 'got two sites back from the repository');
+my $entries = $repo->entries;
+is(scalar keys %$entries, 2, 'repository contains two entries');
 
 test_site(
-    $sites[0],
+    $repo->site('www.ufl.edu'),
     'http://www.ufl.edu/',
     1,
 );
 
 test_site(
-    $sites[1],
+    $repo->site('www.webadmin.ufl.edu'),
     'http://www.webadmin.ufl.edu/',
     1,
 );
 
+eval {
+    $repo->site('this-does-not-exist.ufl.edu')
+};
+like($@, qr/Site this-does-not-exist.ufl.edu not found in repository $REPO_URI/, "got an error message for nonexistent site");
 
 sub test_site {
     my ($site, $uri, $num_tags) = @_;
@@ -63,7 +67,7 @@ sub test_site {
     my $current_tags = $client->ls("$REPO_URI/$host/tags", 'HEAD', 0);
     is(scalar keys %$current_tags, $num_tags, "found $num_tags tag" . ($num_tags == 1 ? '' : 's'));
 
-    $repo->deploy_site($site, 'HEAD', "Deploying site");
+    $site->deploy('HEAD', "Deploying site");
 
     my $new_tags = $client->ls("$REPO_URI/$host/tags", 'HEAD', 0);
     is(scalar keys %$new_tags, $num_tags + 1, "found an additional tag after deploying");

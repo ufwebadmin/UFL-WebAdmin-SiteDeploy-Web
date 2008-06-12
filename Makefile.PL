@@ -3,6 +3,7 @@ use inc::Module::Install;
 name 'UFL-WebAdmin-SiteDeploy-Web';
 all_from 'lib/UFL/WebAdmin/SiteDeploy/Web.pm';
 
+requires 'Carp';
 requires 'Catalyst' => '5.7012';
 requires 'Catalyst::Action::RenderView';
 requires 'Catalyst::Plugin::Authentication';
@@ -14,6 +15,7 @@ requires 'Catalyst::View::TT';
 requires 'Moose';
 requires 'parent';
 requires 'UFL::Controller::Authentication' => '0.02';
+requires 'UFL::WebAdmin::SiteDeploy' => '0.06';
 requires 'UFL::WebAdmin::SiteDeploy::Repository::SVN';
 requires 'UFL::WebAdmin::SiteDeploy::Site';
 requires 'YAML';
