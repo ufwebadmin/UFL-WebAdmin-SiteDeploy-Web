@@ -5,6 +5,9 @@
   [% dt = dt.set_time_zone('local') %]
   [% dt.strftime(datetime_format) %]
 [% END -%]
+[% MACRO revision_uri(revision, uri_pattern) BLOCK %]
+  [% uri_pattern.replace('%s', revision) %]
+[% END -%]
 
 [% IF entries %]
 <table>
@@ -19,7 +22,7 @@
   [% FOREACH entry IN entries %]
     <tr>
       <td>[% entry.key | html %]</td>
-      <td>[% entry.value.created_rev | html %]</td>
+      <td>[% IF c.config.revision_uri_pattern %]<a href="[% revision_uri(entry.value.created_rev, c.config.revision_uri_pattern) | html %]">[% END %][% entry.value.created_rev | html %][% IF c.config.revision_uri_pattern %]</a>[% END %]</td>
       <td>[% format_entry_time(entry.value.time) | html %]</td>
     </tr>
   [% END %]
