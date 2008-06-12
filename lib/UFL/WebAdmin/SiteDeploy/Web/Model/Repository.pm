@@ -22,6 +22,19 @@ using Subversion as the revision control system.
 
 =head1 METHODS
 
+=head2 COMPONENT
+
+Return a new instance of the repository given the configuration passed
+from L<Catalyst::Component>.
+
+=cut
+
+sub COMPONENT {
+    my ($class, $c, $config) = @_;
+
+    return $class->new($config);
+}
+
 =head2 site
 
 Return the L<UFL::WebAdmin::SiteDeploy::Site> corresponding to the

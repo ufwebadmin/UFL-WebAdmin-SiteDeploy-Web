@@ -1,1 +1,28 @@
 [% SET title = '' -%]
+[% MACRO format_entry_time(time) BLOCK %]
+  [% SET epoch = time / 1000000 %]
+  [% USE dt = DateTime(from_epoch = epoch) %]
+  [% dt = dt.set_time_zone('local') %]
+  [% dt.strftime(datetime_format) %]
+[% END -%]
+
+[% IF entries %]
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Revision</th>
+      <th>Created</th>
+    </tr>
+  </thead>
+  <tbody>
+  [% FOREACH entry IN entries %]
+    <tr>
+      <td>[% entry.key | html %]</td>
+      <td>[% entry.value.created_rev | html %]</td>
+      <td>[% format_entry_time(entry.value.time) | html %]</td>
+    </tr>
+  [% END %]
+  </tbody>
+</table>
+[% END %]

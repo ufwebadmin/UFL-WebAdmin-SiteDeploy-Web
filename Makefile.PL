@@ -15,7 +15,7 @@ requires 'Catalyst::View::TT';
 requires 'Moose';
 requires 'parent';
 requires 'UFL::Controller::Authentication' => '0.02';
-requires 'UFL::WebAdmin::SiteDeploy' => '0.06';
+requires 'UFL::WebAdmin::SiteDeploy' => '0.07';
 requires 'UFL::WebAdmin::SiteDeploy::Repository::SVN';
 requires 'UFL::WebAdmin::SiteDeploy::Site';
 requires 'YAML';

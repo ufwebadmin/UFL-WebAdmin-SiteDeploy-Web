@@ -12,13 +12,10 @@ BEGIN {
     use_ok('UFL::WebAdmin::SiteDeploy::Web::Model::Repository');
 }
 
-my $TEST_REPO = UFL::WebAdmin::SiteDeploy::TestRepository->new(
-    base      => $FindBin::Bin,
-    dump_file => file($FindBin::Bin, 'data', 'repo.dump'),
-);
+my $TEST_REPO = UFL::WebAdmin::SiteDeploy::TestRepository->new;
 
 my $REPO_DIR = $TEST_REPO->repository_dir;
-my $REPO_URI = "file://$REPO_DIR";
+my $REPO_URI = $TEST_REPO->repository_uri;
 diag("repo_dir = [$REPO_DIR], repo_uri = [$REPO_URI]");
 
 $TEST_REPO->init;
