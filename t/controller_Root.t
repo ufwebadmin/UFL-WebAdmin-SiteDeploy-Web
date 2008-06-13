@@ -31,14 +31,10 @@ $TEST_REPO->init;
     $mech->content_unlike(qr/svnnotify.yml/i, 'repository view does not contains reference to the SVN::Notify configuration file');
     $mech->content_like(qr|trac.example.org/changeset/3|i, 'repository view contains reference to Trac instance');
 
-    # Restore the old URI
-    UFL::WebAdmin::SiteDeploy::Web->model('Repository')->uri($uri);
-}
-
-{
-    local $ENV{REMOTE_USER} = 'dwc';
-
     $mech->get('/this_does_not_exist');
     $mech->title_like(qr/Not Found/, 'looks like a 404 page');
     is($mech->status, 404, 'status code is correct');
+
+    # Restore the old URI
+    UFL::WebAdmin::SiteDeploy::Web->model('Repository')->uri($uri);
 }
