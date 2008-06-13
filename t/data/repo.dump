@@ -206,3 +206,37 @@ Node-copyfrom-rev: 2
 Node-copyfrom-path: www.webadmin.ufl.edu/trunk/index.html
 
 
+Revision-number: 5
+Prop-content-length: 152
+Content-length: 152
+
+K 7
+svn:log
+V 54
+Add a basic SVN::Notify configuration file for testing
+K 10
+svn:author
+V 3
+dwc
+K 8
+svn:date
+V 27
+2008-06-13T20:26:42.504013Z
+PROPS-END
+
+Node-path: svnnotify.yml
+Node-kind: file
+Node-action: add
+Prop-content-length: 10
+Text-content-length: 134
+Text-content-md5: 6644d65c0cab46c53a9638293f37b281
+Content-length: 144
+
+PROPS-END
+# Both paths are a no-op because we can't set a runtime path
+www.ufl.edu/trunk:
+  handler: Mirror
+www.ufl.edu/tags:
+  handler: Mirror
+
+
