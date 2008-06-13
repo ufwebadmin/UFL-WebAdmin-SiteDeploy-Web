@@ -1,0 +1,7 @@
+[% SET title = site.uri.host -%]
+
+<h3>Recent changes to test</h3>
+<p><a href="">More&hellip;</a></p>
+
+<h3>Recent releases to production</h3>
+<p><a href="">More&hellip;</a></p>

@@ -31,7 +31,7 @@ is($model->uri->path, $REPO_DIR, "translated repository path is $REPO_DIR");
 isa_ok($model->client, 'SVN::Client');
 
 my $entries = $model->entries;
-is(scalar keys %$entries, 2, 'repository contains two entries');
+is(scalar keys %$entries, 3, 'repository contains three entries');
 
 test_site(
     $model->site('www.ufl.edu'),
@@ -45,10 +45,7 @@ test_site(
     1,
 );
 
-eval {
-    $model->site('this-does-not-exist.ufl.edu')
-};
-like($@, qr/Site this-does-not-exist.ufl.edu not found in repository $REPO_URI/, "got an error message for nonexistent site");
+is($model->site('this-does-not-exist.ufl.edu'), undef, 'nonexistent site is not inflated');
 
 sub test_site {
     my ($site, $uri, $num_tags) = @_;

@@ -22,7 +22,7 @@
   [% FOREACH entry IN entries %]
     [% NEXT IF c.config.ignore_entries.grep("^${entry.key}$").size %]
     <tr>
-      <td>[% entry.key | html %]</td>
+      <td><a href="[% c.uri_for(c.controller('Sites').action_for('view'), [ entry.key ]) | html %]">[% entry.key | html %]</a></td>
       <td>[% IF c.config.revision_uri_pattern %]<a href="[% revision_uri(entry.value.created_rev, c.config.revision_uri_pattern) | html %]">[% END %][% entry.value.created_rev | html %][% IF c.config.revision_uri_pattern %]</a>[% END %]</td>
       <td>[% format_entry_time(entry.value.time) | html %]</td>
     </tr>

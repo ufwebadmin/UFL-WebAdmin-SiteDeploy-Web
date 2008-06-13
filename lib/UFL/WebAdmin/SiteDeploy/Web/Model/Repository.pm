@@ -49,8 +49,7 @@ sub site {
     my ($self, $host) = @_;
 
     my $entries = $self->entries;
-    croak "Site $host not found in repository " . $self->uri
-        unless $entries->{$host};
+    return unless $entries->{$host};
 
     my $site = UFL::WebAdmin::SiteDeploy::Site->new(
         uri => "http://$host/",
