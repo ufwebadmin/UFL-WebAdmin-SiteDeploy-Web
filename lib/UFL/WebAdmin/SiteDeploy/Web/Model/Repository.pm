@@ -68,6 +68,16 @@ sub COMPONENT {
     return $self;
 }
 
+=head2 sites
+
+Return an arrayref of L<UFL::WebAdmin::SiteDeploy::Site>s that are
+contained in the repository.
+
+    my $sites = $repository->sites;
+    print $sites->[0]->uri;
+
+=cut
+
 sub sites {
     my ($self) = @_;
 
@@ -81,8 +91,7 @@ sub sites {
 =head2 site
 
 Return the L<UFL::WebAdmin::SiteDeploy::Site> corresponding to the
-specified host. An error is thrown if the site does not exist in the
-repository.
+specified host. If the site does not exist, C<undef> is returned.
 
     $repository->site('www.ufl.edu');
 
