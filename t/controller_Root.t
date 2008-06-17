@@ -24,8 +24,8 @@ $TEST_REPO->init;
 
     $mech->get_ok('/', 'request for index page');
     $mech->content_like(qr/Name/i, 'appears to contain repository view');
-    $mech->content_like(qr/Revision/i, 'appears to contain repository view');
-    $mech->content_like(qr/Created/i, 'appears to contain repository view');
+    $mech->content_like(qr/Last updated/i, 'appears to last update information');
+    $mech->content_like(qr/Last deployed/i, 'appears to last deployment information');
     $mech->content_like(qr/www.ufl.edu/i, 'repository view contains reference to www.ufl.edu');
     $mech->content_like(qr/www.webadmin.ufl.edu/i, 'repository view contains reference to www.webadmin.ufl.edu');
     $mech->content_unlike(qr/svnnotify.yml/i, 'repository view does not contains reference to the SVN::Notify configuration file');
