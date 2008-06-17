@@ -55,10 +55,10 @@ Display the home page.
 sub index : Path('') Args(0) {
     my ($self, $c) = @_;
 
-    my $entries = $c->model('Repository')->entries;
+    my $sites = $c->model('Repository')->sites;
 
     $c->stash(
-        entries  => $entries,
+        sites    => $sites,
         template => 'index.tt',
     );
 }

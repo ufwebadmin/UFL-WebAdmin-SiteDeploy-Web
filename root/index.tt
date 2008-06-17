@@ -1,30 +1,35 @@
 [% SET title = '' -%]
-[% MACRO format_entry_time(time) BLOCK %]
-  [% SET epoch = time / 1000000 %]
-  [% USE dt = DateTime(from_epoch = epoch) %]
-  [% dt = dt.set_time_zone('local') %]
-  [% dt.strftime(datetime_format) %]
-[% END -%]
 [% MACRO revision_uri(revision, uri_pattern) BLOCK %]
   [% uri_pattern.replace('%s', revision) %]
 [% END -%]
 
-[% IF entries %]
+[% IF sites %]
 <table>
   <thead>
     <tr>
       <th>Name</th>
-      <th>Revision</th>
-      <th>Created</th>
+      <th>Last updated</th>
+      <th>Last deployed</th>
     </tr>
   </thead>
   <tbody>
-  [% FOREACH entry IN entries %]
-    [% NEXT IF c.config.ignore_entries.grep("^${entry.key}$").size %]
+  [% FOREACH site IN sites %]
+    [% SET last_update = site.update_commits.last %]
+    [% SET last_deployment = site.deploy_commits.last %]
     <tr>
-      <td><a href="[% c.uri_for(c.controller('Sites').action_for('view'), [ entry.key ]) | html %]">[% entry.key | html %]</a></td>
-      <td>[% IF c.config.revision_uri_pattern %]<a href="[% revision_uri(entry.value.created_rev, c.config.revision_uri_pattern) | html %]">[% END %][% entry.value.created_rev | html %][% IF c.config.revision_uri_pattern %]</a>[% END %]</td>
-      <td>[% format_entry_time(entry.value.time) | html %]</td>
+      <td><a href="[% c.uri_for(c.controller('Sites').action_for('view'), [ site.id ]) | html %]">[% site.id | html %]</a></td>
+      <td>
+    [% FILTER indent('        ') %]
+
+      [% INCLUDE includes/last_commit.tt commit = last_update %]
+    [% END -%]
+      </td>
+      <td>
+    [% FILTER indent('        ') %]
+
+      [% INCLUDE includes/last_commit.tt commit = last_deployment %]
+    [% END -%]
+      </td>
     </tr>
   [% END %]
   </tbody>

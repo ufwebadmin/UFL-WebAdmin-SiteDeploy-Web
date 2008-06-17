@@ -3,9 +3,40 @@ package UFL::WebAdmin::SiteDeploy::Web::Model::Repository;
 use Moose;
 use Carp;
 use UFL::WebAdmin::SiteDeploy::Site;
+use UFL::WebAdmin::SiteDeploy::Types;
+use VCI;
 
-extends 'UFL::WebAdmin::SiteDeploy::Repository::SVN',
-    'Catalyst::Model';
+extends 'Moose::Object', 'Catalyst::Model';
+
+has 'type' => (
+    is => 'rw',
+    isa => 'Str',
+    required => 1,
+);
+
+has 'uri' => (
+    is => 'rw',
+    isa => 'URI',
+    required => 1,
+    coerce => 1,
+);
+
+has 'repository' => (
+    is => 'rw',
+    isa => 'VCI::Abstract::Repository',
+    lazy_build => 1,
+);
+
+sub _build_repository {
+    my ($self) = @_;
+
+    my $repository = VCI->connect(
+        type => $self->type,
+        repo => $self->uri->as_string,
+    );
+
+    return $repository;
+}
 
 =head1 NAME
 
@@ -32,7 +63,19 @@ from L<Catalyst::Component>.
 sub COMPONENT {
     my ($class, $c, $config) = @_;
 
-    return $class->new($config);
+    my $self = $class->new($config);
+
+    return $self;
+}
+
+sub sites {
+    my ($self) = @_;
+
+    my @sites = map {
+        UFL::WebAdmin::SiteDeploy::Site->new(project => $_);
+    } @{ $self->repository->projects };
+
+    return \@sites;
 }
 
 =head2 site
@@ -48,13 +91,13 @@ repository.
 sub site {
     my ($self, $host) = @_;
 
-    my $entries = $self->entries;
-    return unless $entries->{$host};
+    my $project = $self->repository->get_project(name => $host);
 
-    my $site = UFL::WebAdmin::SiteDeploy::Site->new(
-        uri => "http://$host/",
-        repository => $self,
-    );
+    # XXX: Hack to check for site in repository
+    eval { $project->head_revision };
+    return if $@;
+
+    my $site = UFL::WebAdmin::SiteDeploy::Site->new(project => $project);
 
     return $site;
 }

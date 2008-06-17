@@ -1,0 +1,6 @@
+[% IF commit %]
+  [% commit.time.strftime(datetime_format) | html %]
+([% IF c.config.revision_uri_pattern %]<a href="[% revision_uri(commit.revision, c.config.revision_uri_pattern) | html %]" title="[% commit.message | html %]">[% END %]r[% commit.revision | html %][% IF c.config.revision_uri_pattern %]</a>[% END %])
+[% ELSE -%]
+Never
+[% END %]
