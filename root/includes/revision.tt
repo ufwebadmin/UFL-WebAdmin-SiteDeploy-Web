@@ -1,0 +1,1 @@
+[% IF revision_uri_pattern %]<a href="[% revision_uri_pattern.replace('%s', revision) | html %]"[% IF message %] title="[% message | html %]"[% END %]>[% END %][% revision | html %][% IF revision_uri_pattern %]</a>[% END -%]

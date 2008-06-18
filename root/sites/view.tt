@@ -2,11 +2,14 @@
    title = site.id
    num_commits = 5
 -%]
+[% MACRO timeline_link BLOCK %]
+  [% IF timeline_uri %]<p><a href="[% timeline_uri | html %]">More&hellip;</a></p>[% END %]
+[% END -%]
 
 <h3>Recent changes to test</h3>
 [% INCLUDE includes/commits.tt commits = update_commits.reverse %]
-<p><a href="">More&hellip;</a></p>
+[%+ timeline_link %]
 
 <h3>Recent releases to production</h3>
 [% INCLUDE includes/commits.tt commits = deploy_commits.reverse %]
-<p><a href="">More&hellip;</a></p>
+[%+ timeline_link %]

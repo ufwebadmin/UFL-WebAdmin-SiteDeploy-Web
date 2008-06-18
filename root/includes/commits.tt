@@ -19,7 +19,7 @@
   <tbody>
   [% FOREACH commit IN selected_commits %]
     <tr>
-      <td>[% commit.revision | html %]</td>
+      <td>[% INCLUDE includes/revision.tt revision = commit.revision %]</td>
       <td>[% commit.time.strftime(datetime_format) | html %]</td>
       <td>[% commit.committer | html %]</td>
       <td>[% commit.message | html %]</td>

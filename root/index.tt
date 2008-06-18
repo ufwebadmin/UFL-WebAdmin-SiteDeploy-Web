@@ -1,7 +1,4 @@
 [% SET title = '' -%]
-[% MACRO revision_uri(revision, uri_pattern) BLOCK %]
-  [% uri_pattern.replace('%s', revision) %]
-[% END -%]
 
 [% IF sites %]
 <table>
