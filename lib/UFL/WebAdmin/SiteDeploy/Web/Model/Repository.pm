@@ -83,9 +83,13 @@ contained in the repository.
 sub sites {
     my ($self) = @_;
 
-    my @sites = map {
-        UFL::WebAdmin::SiteDeploy::Site->new(project => $_);
+    my @projects = sort {
+        $a->name cmp $b->name
     } @{ $self->repository->projects };
+
+    my @sites = map {
+        UFL::WebAdmin::SiteDeploy::Site->new(project => $_)
+    } @projects;
 
     return \@sites;
 }
