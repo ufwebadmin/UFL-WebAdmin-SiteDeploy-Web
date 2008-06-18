@@ -1,6 +1,8 @@
 [% SET title = '' -%]
 
+<h3>Sites</h3>
 [% IF sites %]
+<p>Click on a site to get more information about it or to deploy it.</p>
 <table>
   <thead>
     <tr>
@@ -31,4 +33,6 @@
   [% END %]
   </tbody>
 </table>
+[% ELSE %]
+<p>None yet.</p>
 [% END %]
