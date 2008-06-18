@@ -1,7 +1,12 @@
-[% SET title = site.uri.host -%]
+[% SET
+   title = site.id
+   num_commits = 5
+-%]
 
 <h3>Recent changes to test</h3>
+[% INCLUDE includes/commits.tt commits = update_commits.reverse %]
 <p><a href="">More&hellip;</a></p>
 
 <h3>Recent releases to production</h3>
+[% INCLUDE includes/commits.tt commits = deploy_commits.reverse %]
 <p><a href="">More&hellip;</a></p>

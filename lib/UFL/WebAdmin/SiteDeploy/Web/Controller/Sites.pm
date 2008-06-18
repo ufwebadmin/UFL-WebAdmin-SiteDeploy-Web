@@ -55,7 +55,13 @@ L<UFL::WebAdmin::SiteDeploy::Site>.
 sub view : PathPart('') Chained('site') Args(0) {
     my ($self, $c) = @_;
 
-    $c->stash(template => 'sites/view.tt');
+    my $site = $c->stash->{site};
+
+    $c->stash(
+        update_commits => $site->update_commits,
+        deploy_commits => $site->deploy_commits,
+        template       => 'sites/view.tt',
+    );
 }
 
 =head1 AUTHOR

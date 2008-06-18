@@ -1,0 +1,30 @@
+[% DEFAULT
+   num_commits = -1
+   selected_commits = commits
+-%]
+[% IF num_commits > -1 AND num_commits < commits.size %]
+  [% SET selected_commits = commits.slice(0, num_commits - 1) %]
+[% END -%]
+
+[% IF selected_commits.size %]
+<table>
+  <thead>
+    <tr>
+      <th>Revision</th>
+      <th>Date</th>
+      <th>Author</th>
+      <th>Message</th>
+    </tr>
+  </thead>
+  <tbody>
+  [% FOREACH commit IN selected_commits %]
+    <tr>
+      <td>[% commit.revision | html %]</td>
+      <td>[% commit.time.strftime(datetime_format) | html %]</td>
+      <td>[% commit.committer | html %]</td>
+      <td>[% commit.message | html %]</td>
+    </tr>
+  [% END %]
+  </tbody>
+</table>
+[% END -%]
