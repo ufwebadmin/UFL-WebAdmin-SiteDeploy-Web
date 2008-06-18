@@ -12,6 +12,7 @@ has 'type' => (
     is => 'rw',
     isa => 'Str',
     required => 1,
+    trigger => \&_build_repository,
 );
 
 has 'uri' => (
@@ -19,6 +20,7 @@ has 'uri' => (
     isa => 'URI',
     required => 1,
     coerce => 1,
+    trigger => \&_build_repository,
 );
 
 has 'repository' => (
