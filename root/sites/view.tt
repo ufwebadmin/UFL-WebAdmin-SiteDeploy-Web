@@ -2,9 +2,6 @@
    title = site.id
    num_commits = 5
 -%]
-[% MACRO timeline_link BLOCK %]
-  [% IF timeline_uri %]<p><a href="[% timeline_uri | html %]">More&hellip;</a></p>[% END %]
-[% END -%]
 
 [% IF c.req.params.deployed %]
 <p>Site deployed.</p>
@@ -12,13 +9,23 @@
 <p>Error deploying site: A new update was committed before you deployed!</p>
 [% END -%]
 
+<h3>Site information</h3>
+<ul>
+  <li><a href="[% site.uri | html %]">Main site</a></li>
+[% IF browser_uri_pattern %]
+  <li><a href="[% browser_uri_pattern.replace('%s', site.id) | html %]">Site contents</a></li>
+[% END %]
+[% IF log_uri_pattern %]
+  <li><a href="[% log_uri_pattern.replace('%s', site.id) | html %]">Site updates</a></li>
+[% END %]
+</ul>
+
 <h3>Deploy site</h3>
 <form action="[% c.uri_for(c.controller.action_for('deploy'), [ site.id ]) | html %]" method="post">
   <input type="hidden" name="revision" value="[% revision | html %]" />
-  <textarea name="message"></textarea>
+  <label>Log message (optional): <textarea name="message"></textarea></label>
   <input type="submit" value="Deploy" />
 </form>
 
 <h3>Recent releases to production</h3>
 [% INCLUDE includes/commits.tt commits = deploy_commits.reverse %]
-[%+ timeline_link %]
