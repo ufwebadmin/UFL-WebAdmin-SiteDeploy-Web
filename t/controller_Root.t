@@ -2,7 +2,7 @@
 
 use strict;
 use warnings;
-use Test::More tests => 11;
+use Test::More tests => 10;
 use UFL::WebAdmin::SiteDeploy::TestRepository;
 
 use Test::WWW::Mechanize::Catalyst 'UFL::WebAdmin::SiteDeploy::Web';
@@ -16,8 +16,6 @@ $TEST_REPO->init;
 
 {
     local $ENV{REMOTE_USER} = 'dwc';
-    local UFL::WebAdmin::SiteDeploy::Web->config->{ignore_entries} = [ 'svnnotify.yml' ];
-    local UFL::WebAdmin::SiteDeploy::Web->config->{revision_uri_pattern} = 'http://trac.example.org/changeset/%s';
 
     my $uri = UFL::WebAdmin::SiteDeploy::Web->model('Repository')->uri;
     UFL::WebAdmin::SiteDeploy::Web->model('Repository')->uri($TEST_REPO->repository_uri);
@@ -29,7 +27,6 @@ $TEST_REPO->init;
     $mech->content_like(qr/www.ufl.edu/i, 'repository view contains reference to www.ufl.edu');
     $mech->content_like(qr/www.webadmin.ufl.edu/i, 'repository view contains reference to www.webadmin.ufl.edu');
     $mech->content_unlike(qr/svnnotify.yml/i, 'repository view does not contains reference to the SVN::Notify configuration file');
-    $mech->content_like(qr|trac.example.org/changeset/3|i, 'repository view contains reference to Trac instance');
 
     $mech->get('/this_does_not_exist');
     $mech->title_like(qr/Not Found/, 'looks like a 404 page');
