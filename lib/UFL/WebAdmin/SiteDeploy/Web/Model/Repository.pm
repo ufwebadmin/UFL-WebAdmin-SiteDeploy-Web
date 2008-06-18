@@ -12,15 +12,15 @@ has 'type' => (
     is => 'rw',
     isa => 'Str',
     required => 1,
-    trigger => \&_build_repository,
+    trigger => \&_maybe_reload_repository,
 );
 
 has 'uri' => (
     is => 'rw',
     isa => 'URI',
-    required => 1,
     coerce => 1,
-    trigger => \&_build_repository,
+    required => 1,
+    trigger => \&_maybe_reload_repository,
 );
 
 has 'repository' => (
@@ -83,6 +83,9 @@ contained in the repository.
 sub sites {
     my ($self) = @_;
 
+    # XXX: Force a rebuild of the repository since ->projects is cached
+    $self->_maybe_reload_repository;
+
     my @projects = sort {
         $a->name cmp $b->name
     } @{ $self->repository->projects };
@@ -115,6 +118,22 @@ sub site {
     my $site = UFL::WebAdmin::SiteDeploy::Site->new(project => $project);
 
     return $site;
+}
+
+=head2 _maybe_reload_repository
+
+Reconnect to the repository. This is useful, for example, because
+L<VCI> caches information that might have changed after a deploy
+operation.
+
+=cut
+
+sub _maybe_reload_repository {
+    my ($self) = @_;
+
+    if ($self->repository) {
+        $self->repository($self->_build_repository);
+    }
 }
 
 =head1 SEE ALSO
