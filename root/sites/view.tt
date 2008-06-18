@@ -19,10 +19,6 @@
   <input type="submit" value="Deploy" />
 </form>
 
-<h3>Recent changes to test</h3>
-[% INCLUDE includes/commits.tt commits = update_commits.reverse %]
-[%+ timeline_link %]
-
 <h3>Recent releases to production</h3>
 [% INCLUDE includes/commits.tt commits = deploy_commits.reverse %]
 [%+ timeline_link %]

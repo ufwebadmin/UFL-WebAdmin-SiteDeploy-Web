@@ -59,7 +59,6 @@ sub view : PathPart('') Chained('site') Args(0) {
 
     $c->stash(
         revision       => $site->project->head_revision,
-        update_commits => $site->update_commits,
         deploy_commits => $site->deploy_commits,
         template       => 'sites/view.tt',
     );
