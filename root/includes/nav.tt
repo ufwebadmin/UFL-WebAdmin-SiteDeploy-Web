@@ -4,8 +4,8 @@
 
 <ul id="nav">
 [% FILTER indent('  ') %]
-  [% IF trac_uri %]
-    [% INCLUDE nav_link uri = trac_uri, label = 'Trac' %]
+  [% IF timeline_uri %]
+    [% INCLUDE nav_link uri = timeline_uri, label = 'Trac Timeline' %]
   [% END %]
 [% END %]
 </ul><!-- #nav -->
