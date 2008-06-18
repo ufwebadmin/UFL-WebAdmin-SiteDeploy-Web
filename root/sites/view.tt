@@ -6,6 +6,19 @@
   [% IF timeline_uri %]<p><a href="[% timeline_uri | html %]">More&hellip;</a></p>[% END %]
 [% END -%]
 
+[% IF c.req.params.deployed %]
+<p>Site deployed.</p>
+[% ELSIF c.req.params.not_current %]
+<p>Error deploying site: A new update was committed before you deployed!</p>
+[% END -%]
+
+<h3>Deploy site</h3>
+<form action="[% c.uri_for(c.controller.action_for('deploy'), [ site.id ]) | html %]" method="post">
+  <input type="hidden" name="revision" value="[% revision | html %]" />
+  <textarea name="message"></textarea>
+  <input type="submit" value="Deploy" />
+</form>
+
 <h3>Recent changes to test</h3>
 [% INCLUDE includes/commits.tt commits = update_commits.reverse %]
 [%+ timeline_link %]

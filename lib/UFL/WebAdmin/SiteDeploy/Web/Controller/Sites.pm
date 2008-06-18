@@ -58,10 +58,42 @@ sub view : PathPart('') Chained('site') Args(0) {
     my $site = $c->stash->{site};
 
     $c->stash(
+        revision       => $site->project->head_revision,
         update_commits => $site->update_commits,
         deploy_commits => $site->deploy_commits,
         template       => 'sites/view.tt',
     );
+}
+
+=head2 deploy
+
+Deploy the stashed L<UFL::WebAdmin::SiteDeploy::Site> to production.
+
+=cut
+
+sub deploy : PathPart Chained('site') Args(0) {
+    my ($self, $c) = @_;
+
+    my $site = $c->stash->{site};
+    my $return_uri = $c->uri_for($self->action_for('view'), [ $site->id ]);
+
+    my $revision = $c->req->params->{revision};
+    $c->detach('/default') unless $revision;
+
+    if ($revision != $site->project->head_revision) {
+        $return_uri->query_form(not_current => 1);
+        return $c->res->redirect($return_uri);
+    }
+
+    my $message = 'Deploying ' . $site->id . ' on behalf of ' . $c->req->user->id . '.';
+    if (my $additional_message = $c->req->param('message')) {
+        $message .= " Their message:\n\n$additional_message";
+    }
+
+    $site->deploy($revision, $message);
+
+    $return_uri->query_form(deployed => 1);
+    $c->res->redirect($return_uri);
 }
 
 =head1 AUTHOR
