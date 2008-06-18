@@ -1,0 +1,9 @@
+[% DEFAULT num_words = 7 -%]
+
+[% SET words = message.split(' ') %]
+[% SET truncated = 0 %]
+[% IF num_words < words.size %]
+  [% SET words = words.slice(0, num_words - 1) %]
+  [% SET truncated = 1 %]
+[% END %]
+[% words.join(' ') | html %][% IF truncated %]&hellip;[% END -%]
