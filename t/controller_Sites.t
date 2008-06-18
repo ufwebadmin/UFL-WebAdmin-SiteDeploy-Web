@@ -2,7 +2,7 @@
 
 use strict;
 use warnings;
-use Test::More tests => 15;
+use Test::More tests => 13;
 use UFL::WebAdmin::SiteDeploy::TestRepository;
 
 use Test::WWW::Mechanize::Catalyst 'UFL::WebAdmin::SiteDeploy::Web';
@@ -29,8 +29,6 @@ $TEST_REPO->init;
     $mech->get_ok('/sites/www.ufl.edu');
     $mech->title_like(qr/www.ufl.edu/, 'looks like we are viewing a site');
     $mech->content_like(qr/Deploy site/, 'page has a deploy site section');
-    $mech->content_like(qr/Recent changes to test/, 'page has a recent updates section');
-    $mech->content_like(qr/Add some files/, 'page has a commit message');
     $mech->content_like(qr/Recent releases to production/, 'page has a recent deployments section');
     $mech->content_like(qr/Create a tag/, 'page has a commit message');
 
