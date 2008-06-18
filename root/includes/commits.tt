@@ -18,7 +18,7 @@
   </thead>
   <tbody>
   [% FOREACH commit IN selected_commits %]
-    <tr>
+    <tr[% IF (loop.count - 1) % 2 == 0 %] class="even"[% END %]>
       <td>[% INCLUDE includes/revision.tt revision = commit.revision %]</td>
       <td>[% commit.time.strftime(datetime_format) | html %]</td>
       <td>[% commit.committer | html %]</td>

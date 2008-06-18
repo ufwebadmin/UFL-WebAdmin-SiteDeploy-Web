@@ -13,7 +13,7 @@
   [% FOREACH site IN sites %]
     [% SET last_update = site.update_commits.last %]
     [% SET last_deployment = site.deploy_commits.last %]
-    <tr>
+    <tr[% IF (loop.count - 1) % 2 == 0 %] class="even"[% END %]>
       <td><a href="[% c.uri_for(c.controller('Sites').action_for('view'), [ site.id ]) | html %]">[% site.id | html %]</a></td>
       <td>
     [% FILTER indent('        ') %]
