@@ -36,7 +36,7 @@ border:3px double #ccc;
 clear:both;
 color:#333;
 font-size:1.2em;
-margin:15px 0 5px;
+margin:35px 0 5px 0;
 padding:5px;
 text-align:left;
 }
@@ -69,7 +69,7 @@ border-bottom:1px solid #ccc;
 float:right;
 padding:3px 0;
 text-align:left;
-width:650px;
+width:550px;
 }
 
 #content dt {
@@ -79,7 +79,7 @@ float:left;
 font-weight:700;
 padding:3px 0 3px 3px;
 text-align:left;
-width:100px;
+width:200px;
 }
 
 #content fieldset {
@@ -410,4 +410,17 @@ background:#eee;
 
 .error {
 color: #FF0000;
+}
+
+#content dd.deployed, #content dd.pending {
+width:530px;
+padding-left:20px;
+}
+
+.deployed {
+background:transparent url(images/deployed.png) no-repeat left center;
+}
+
+.pending {
+background:transparent url(images/pending.png) no-repeat left center;
 }

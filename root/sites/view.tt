@@ -12,17 +12,25 @@
 [% END -%]
 
 <h3>Site information</h3>
-<ul>
-  <li><a href="[% site.uri | html %]">Main site</a></li>
-[% IF browser_uri_pattern %]
-  <li><a href="[% browser_uri_pattern.replace('%s', site.id) | html %]">Site contents</a></li>
+[% SET last_update = site.last_update %]
+[% SET last_deployment = site.last_deployment %]
+<dl>
+  <dt>Last updated in test</dt>
+  <dd>[% INCLUDE includes/last_commit.tt commit = last_update %]</dd>
+  <dt>Last deployed to production</dt>
+  <dd>[% INCLUDE includes/last_commit.tt commit = last_deployment %]</dd>
+  <dt>Status</dt>
+[% IF last_update.time > last_deployment.time %]
+  <dd class="pending">Outstanding changes in test</dd>
+[% ELSE %]
+  <dd class="deployed">No outstanding changes</dd>
 [% END %]
-[% IF log_uri_pattern %]
-  <li><a href="[% log_uri_pattern.replace('%s', site.id) | html %]">Site updates</a></li>
-[% END %]
-</ul>
+  </dd>
+</dl>
+<br clear="all" />
 
 <h3>Deploy site</h3>
+<p>To release <a href="[% site.uri | html %]">[% site.id | html %]</a> to production, use the form below. Any outstanding [% IF log_uri_pattern %]<a href="[% log_uri_pattern.replace('%s', site.id) | html %]">[% END %]changes[% IF log_uri_pattern %]</a>[% END %] in test will be released shortly after you press the &quot;Deploy&quot; button.</li>
 <form action="[% c.uri_for(c.controller.action_for('deploy'), [ site.id ]) | html %]" method="post">
   <input type="hidden" name="revision" value="[% revision | html %]" />
   <label>Log message (optional): <textarea name="message"></textarea></label>

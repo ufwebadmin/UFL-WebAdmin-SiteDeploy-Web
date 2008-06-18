@@ -14,11 +14,11 @@ my $TEST_REPO = UFL::WebAdmin::SiteDeploy::TestRepository->new;
 
 $TEST_REPO->init;
 
+my $uri = UFL::WebAdmin::SiteDeploy::Web->model('Repository')->uri;
+UFL::WebAdmin::SiteDeploy::Web->model('Repository')->uri($TEST_REPO->repository_uri);
+
 {
     local $ENV{REMOTE_USER} = 'dwc';
-
-    my $uri = UFL::WebAdmin::SiteDeploy::Web->model('Repository')->uri;
-    UFL::WebAdmin::SiteDeploy::Web->model('Repository')->uri($TEST_REPO->repository_uri);
 
     $mech->get_ok('/', 'request for index page');
     $mech->content_like(qr/Name/i, 'appears to contain repository view');
@@ -31,7 +31,7 @@ $TEST_REPO->init;
     $mech->get('/this_does_not_exist');
     $mech->title_like(qr/Not Found/, 'looks like a 404 page');
     is($mech->status, 404, 'status code is correct');
-
-    # Restore the old URI
-    UFL::WebAdmin::SiteDeploy::Web->model('Repository')->uri($uri);
 }
+
+# Restore the old URI
+UFL::WebAdmin::SiteDeploy::Web->model('Repository')->uri($uri);
