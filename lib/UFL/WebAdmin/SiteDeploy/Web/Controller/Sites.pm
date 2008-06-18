@@ -76,6 +76,7 @@ sub deploy : PathPart Chained('site') Args(0) {
     my $site = $c->stash->{site};
     my $return_uri = $c->uri_for($self->action_for('view'), [ $site->id ]);
 
+    # Check the revision to ensure we aren't deploying old content
     my $revision = $c->req->params->{revision};
     $c->detach('/default') unless $revision;
 
@@ -84,12 +85,24 @@ sub deploy : PathPart Chained('site') Args(0) {
         return $c->res->redirect($return_uri);
     }
 
+    # Build a message
     my $message = 'Deploying ' . $site->id . ' on behalf of ' . $c->req->user->id . '.';
     if (my $additional_message = $c->req->param('message')) {
         $message .= " Their message:\n\n$additional_message";
     }
 
-    $site->deploy($revision, $message);
+    # Deploy the site
+    eval {
+        $site->deploy($revision, $message)
+    };
+    if ($@) {
+        if ($@ =~ /^Site has already been deployed/) {
+            $return_uri->query_form(already_deployed => 1);
+            return $c->res->redirect($return_uri);
+        }
+
+        die $@;
+    }
 
     $return_uri->query_form(deployed => 1);
     $c->res->redirect($return_uri);

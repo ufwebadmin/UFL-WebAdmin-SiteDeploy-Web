@@ -4,9 +4,11 @@
 -%]
 
 [% IF c.req.params.deployed %]
-<p>Site deployed.</p>
+<p class="message">Site deployed.</p>
 [% ELSIF c.req.params.not_current %]
-<p>Error deploying site: A new update was committed before you deployed!</p>
+<p class="error">Error deploying site: A new update was committed before you deployed!</p>
+[% ELSIF c.req.params.already_deployed %]
+<p class="error">Error deploying site: The site has been deployed very recently. Please wait a minute and try again.</p>
 [% END -%]
 
 <h3>Site information</h3>
