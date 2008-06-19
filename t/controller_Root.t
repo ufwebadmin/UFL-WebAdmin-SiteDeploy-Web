@@ -2,7 +2,7 @@
 
 use strict;
 use warnings;
-use Test::More tests => 15;
+use Test::More tests => 19;
 use UFL::WebAdmin::SiteDeploy::TestRepository;
 
 use Test::WWW::Mechanize::Catalyst 'UFL::WebAdmin::SiteDeploy::Web';
@@ -26,7 +26,11 @@ UFL::WebAdmin::SiteDeploy::Web->model('Repository')->uri($TEST_REPO->repository_
     $mech->content_like(qr/Last updated/i, 'appears to last update information');
     $mech->content_like(qr/Last deployed/i, 'appears to last deployment information');
     $mech->content_like(qr|www.ufl.edu(</a>)?</td>\s*<td class="deployed">Deployed|i, 'repository view contains reference to www.ufl.edu');
+    $mech->content_like(qr|Mon, June  9, 2008  5:39 PM\s*\((<a\s+[^>]+>)?r2(</a>)?\)|s, 'repository view contains correct update information for www.ufl.edu');
+    $mech->content_like(qr|Mon, June  9, 2008  5:40 PM\s*\((<a\s+[^>]+>)?r3(</a>)?\)|, 'repository view contains correct deployment information for www.ufl.edu');
     $mech->content_like(qr|www.webadmin.ufl.edu(</a>)?</td>\s*<td class="pending">Pending|i, 'repository view contains reference to www.webadmin.ufl.edu');
+    $mech->content_like(qr|Wed, June 18, 2008  5:54 PM\s*\((<a\s+[^>]+>)?r6(</a>)?\)|, 'repository view contains correct update information for www.webadmin.ufl.edu');
+    $mech->content_like(qr|Mon, June  9, 2008  5:40 PM\s*\((<a\s+[^>]+>)?r4(</a>)?\)|, 'repository view contains correct deployment information for www.webadmin.ufl.edu');
     $mech->content_unlike(qr/svnnotify.yml/i, 'repository view does not contains reference to the SVN::Notify configuration file');
 
     my $message = 'Checking that we reload to the right place ' . scalar(localtime);

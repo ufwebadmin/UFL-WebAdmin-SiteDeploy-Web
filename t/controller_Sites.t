@@ -32,7 +32,7 @@ UFL::WebAdmin::SiteDeploy::Web->model('Repository')->uri($TEST_REPO->repository_
 {
     local $ENV{REMOTE_USER} = 'dwc';
 
-    load_site($mech, 'www.ufl.edu', 0, 'Mon, June  9, 2008  9:40 PM', 'dwc', 'Create a tag');
+    load_site($mech, 'www.ufl.edu', 0, 'Mon, June  9, 2008  5:40 PM', 'dwc', 'Create a tag');
     deploy_site($mech, 'www.ufl.edu', 7);
 }
 
@@ -40,7 +40,7 @@ UFL::WebAdmin::SiteDeploy::Web->model('Repository')->uri($TEST_REPO->repository_
 {
     local $ENV{REMOTE_USER} = 'dwc';
 
-    load_site($mech, 'www.webadmin.ufl.edu', 1, 'Mon, June  9, 2008  9:40 PM', 'dwc', 'Create a tag');
+    load_site($mech, 'www.webadmin.ufl.edu', 1, 'Mon, June  9, 2008  5:40 PM', 'dwc', 'Create a tag');
     deploy_site($mech, 'www.webadmin.ufl.edu', 8);
 }
 

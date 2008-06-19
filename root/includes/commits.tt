@@ -20,7 +20,7 @@
   [% FOREACH commit IN selected_commits %]
     <tr[% IF (loop.count - 1) % 2 == 0 %] class="even"[% END %]>
       <td>[% INCLUDE includes/revision.tt revision = commit.revision %]</td>
-      <td>[% commit.time.strftime(datetime_format) | html %]</td>
+      <td>[% commit.time.set_time_zone('local').strftime(datetime_format) | html %]</td>
       <td>[% commit.committer | html %]</td>
       <td>[% INCLUDE includes/message.tt message = commit.message %]</td>
     </tr>

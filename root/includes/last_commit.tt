@@ -1,5 +1,5 @@
 [% IF commit %]
-  [% commit.time.strftime(datetime_format) | html %]
+  [% commit.time.set_time_zone('local').strftime(datetime_format) | html %]
 ([% INCLUDE includes/revision.tt revision = commit.revision, message = "${commit.message} -- ${commit.committer}", revision_prefix = 'r' %])
 [% ELSE -%]
 Never
