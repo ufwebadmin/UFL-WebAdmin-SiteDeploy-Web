@@ -19,7 +19,6 @@ requires 'Moose::Object';
 requires 'parent';
 requires 'UFL::Controller::Authentication' => '0.02';
 requires 'UFL::WebAdmin::SiteDeploy' => '0.07';
-requires 'UFL::WebAdmin::SiteDeploy::Repository::SVN';
 requires 'UFL::WebAdmin::SiteDeploy::Site';
 requires 'UFL::WebAdmin::SiteDeploy::Types';
 requires 'VCI';
