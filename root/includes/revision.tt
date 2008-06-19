@@ -1,1 +1,6 @@
-[% IF revision_uri_pattern %]<a href="[% revision_uri_pattern.replace('%s', revision) | html %]"[% IF message %] title="[% message | html %]"[% END %]>[% END %][% revision | html %][% IF revision_uri_pattern %]</a>[% END -%]
+[% DEFAULT
+   revision_prefix = ''
+   revision_suffix = ''
+-%]
+
+[% IF revision_uri_pattern %]<a href="[% revision_uri_pattern.replace('%s', revision) | html %]"[% IF message %] title="[% message | html %]"[% END %]>[% END %][% revision_prefix | html %][% revision | html %][% revision_suffix | html %][% IF revision_uri_pattern %]</a>[% END -%]
