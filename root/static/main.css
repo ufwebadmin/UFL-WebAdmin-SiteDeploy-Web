@@ -72,6 +72,11 @@ text-align:left;
 width:550px;
 }
 
+#content dd.deployed,#content dd.pending {
+width:530px;
+padding-left:20px;
+}
+
 #content dt {
 border-bottom:1px solid #ccc;
 clear:left;
@@ -255,6 +260,10 @@ padding:5px;
 text-align:left;
 }
 
+#content td.deployed,#content td.pending {
+padding-left:20px;
+}
+
 #content textarea {
 height:15em;
 }
@@ -410,11 +419,6 @@ background:#eee;
 
 .error {
 color: #FF0000;
-}
-
-#content dd.deployed, #content dd.pending {
-width:530px;
-padding-left:20px;
 }
 
 .deployed {

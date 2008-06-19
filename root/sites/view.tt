@@ -20,7 +20,7 @@
   <dt>Last deployed to production</dt>
   <dd>[% INCLUDE includes/last_commit.tt commit = last_deployment %]</dd>
   <dt>Status</dt>
-[% IF last_update.time > last_deployment.time %]
+[% IF site.has_outstanding_changes %]
   <dd class="pending">Outstanding changes in test</dd>
 [% ELSE %]
   <dd class="deployed">No outstanding changes</dd>

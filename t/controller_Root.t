@@ -2,7 +2,7 @@
 
 use strict;
 use warnings;
-use Test::More tests => 14;
+use Test::More tests => 15;
 use UFL::WebAdmin::SiteDeploy::TestRepository;
 
 use Test::WWW::Mechanize::Catalyst 'UFL::WebAdmin::SiteDeploy::Web';
@@ -22,10 +22,11 @@ UFL::WebAdmin::SiteDeploy::Web->model('Repository')->uri($TEST_REPO->repository_
 
     $mech->get_ok('/', 'request for index page');
     $mech->content_like(qr/Name/i, 'appears to contain repository view');
+    $mech->content_like(qr/Status/i, 'appears to contain repository view');
     $mech->content_like(qr/Last updated/i, 'appears to last update information');
     $mech->content_like(qr/Last deployed/i, 'appears to last deployment information');
-    $mech->content_like(qr/www.ufl.edu/i, 'repository view contains reference to www.ufl.edu');
-    $mech->content_like(qr/www.webadmin.ufl.edu/i, 'repository view contains reference to www.webadmin.ufl.edu');
+    $mech->content_like(qr|www.ufl.edu(</a>)?</td>\s*<td class="deployed">Deployed|i, 'repository view contains reference to www.ufl.edu');
+    $mech->content_like(qr|www.webadmin.ufl.edu(</a>)?</td>\s*<td class="pending">Pending|i, 'repository view contains reference to www.webadmin.ufl.edu');
     $mech->content_unlike(qr/svnnotify.yml/i, 'repository view does not contains reference to the SVN::Notify configuration file');
 
     my $message = 'Checking that we reload to the right place ' . scalar(localtime);

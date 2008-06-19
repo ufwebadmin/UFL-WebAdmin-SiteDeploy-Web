@@ -7,6 +7,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Status</th>
       <th>Last updated</th>
       <th>Last deployed</th>
     </tr>
@@ -17,6 +18,7 @@
     [% SET last_deployment = site.last_deployment %]
     <tr[% IF (loop.count - 1) % 2 == 0 %] class="even"[% END %]>
       <td><a href="[% c.uri_for(c.controller('Sites').action_for('view'), [ site.id ]) | html %]">[% site.id | html %]</a></td>
+      <td class="[% site.has_outstanding_changes ? 'pending' : 'deployed' | html %]">[% site.has_outstanding_changes ? 'Pending' : 'Deployed' | html %]</td>
       <td>
     [% FILTER indent('        ') %]
 

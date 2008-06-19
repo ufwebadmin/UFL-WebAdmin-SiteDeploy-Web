@@ -27,4 +27,6 @@
   [% END %]
   </tbody>
 </table>
+[% ELSE %]
+<p>None yet.</p>
 [% END -%]
