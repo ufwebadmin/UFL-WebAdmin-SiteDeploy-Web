@@ -34,7 +34,7 @@
 <form action="[% c.uri_for(c.controller.action_for('deploy'), [ site.id ]) | html %]" method="post">
   <input type="hidden" name="revision" value="[% revision | html %]" />
   <label>Log message (optional): <textarea name="message"></textarea></label>
-  <input type="submit" value="Deploy" />
+  <input type="submit" class="submit" value="Deploy" />
 </form>
 
 <h3>Recent releases to production</h3>
