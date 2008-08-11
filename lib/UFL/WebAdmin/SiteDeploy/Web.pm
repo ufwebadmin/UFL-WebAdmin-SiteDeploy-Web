@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use parent qw/Catalyst/;
 
-our $VERSION = '0.02_01';
+our $VERSION = '0.02';
 
 __PACKAGE__->setup(qw/
     ConfigLoader
