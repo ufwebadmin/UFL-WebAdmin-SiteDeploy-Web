@@ -22,4 +22,4 @@ View::HTML:
   PRE_CHOMP: 1
   WRAPPER:   wrapper.tt
   VARIABLES: &ttvariables
-    datetime_format: %a, %B %e, %Y %l:%M %p
+    datetime_format: %a, %b %e, %Y %l:%M %p
