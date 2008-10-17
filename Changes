@@ -1,5 +1,8 @@
 This file documents the revision history for UFL::WebAdmin::SiteDeploy::Web.
 
+0.03
+        - Add AutoRestart plugin
+
 0.02  Mon Aug 11 16:10:03 EDT 2008
         - Update interface a little (#6)
 
