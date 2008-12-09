@@ -31,7 +31,7 @@ UFL::WebAdmin::SiteDeploy::Web->model('Repository')->uri($TEST_REPO->repository_
     $mech->content_like(qr|www.webadmin.ufl.edu(</a>)?</td>\s*<td class="pending"><a href="http://localhost/sites/www.webadmin.ufl.edu">Pending|i, 'repository view contains reference to www.webadmin.ufl.edu');
     $mech->content_like(qr|Wed, Jun 18, 2008  5:54 PM\s*\((<a\s+[^>]+>)?r6(</a>)?\)|, 'repository view contains correct update information for www.webadmin.ufl.edu');
     $mech->content_like(qr|Mon, Jun  9, 2008  5:40 PM\s*\((<a\s+[^>]+>)?r4(</a>)?\)|, 'repository view contains correct deployment information for www.webadmin.ufl.edu');
-    $mech->content_unlike(qr/svnnotify.yml/i, 'repository view does not contains reference to the SVN::Notify configuration file');
+    $mech->content_unlike(qr/svnnotify.yml/i, 'repository view does not contain reference to the SVN::Notify configuration file');
 
     my $message = 'Checking that we reload to the right place ' . scalar(localtime);
     $mech->get_ok('/sites/www.ufl.edu');
