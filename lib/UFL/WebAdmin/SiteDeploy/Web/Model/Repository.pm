@@ -32,6 +32,8 @@ has 'repository' => (
 sub _build_repository {
     my ($self) = @_;
 
+    # XXX: If we are using a file:// repository and the corresponding
+    # XXX: directory does not exist, VCI will spew uninitialized warnings
     my $repository = VCI->connect(
         type => $self->type,
         repo => $self->uri->as_string,
