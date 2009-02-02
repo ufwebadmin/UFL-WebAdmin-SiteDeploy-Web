@@ -33,7 +33,7 @@
       <div id="header">
         <h1><a href="[% c.uri_for('/') | html %]">[% c.config.name | html %]<span></span></a></h1>
 [% IF c.user_exists %]
-        <p>Logged in as <strong>[% c.user.id | html %]</strong> (<a href="[% c.uri_for('/logout') | html %]">Logout</a>)</p>
+        <p>Logged in as <strong>[% c.user.username | html %]</strong> (<a href="[% c.config.logout_uri | html %]">Logout</a>)</p>
 [% END %]
       </div><!-- #header -->
 

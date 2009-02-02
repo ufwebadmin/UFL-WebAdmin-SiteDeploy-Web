@@ -25,9 +25,8 @@ Require authentication for all pages.
 sub auto : Private {
     my ($self, $c) = @_;
 
-    $c->forward($c->controller('Authentication')->action_for('login'))
-        if $c->controller('Authentication')->auto_login and not $c->user_exists;
-    $c->forward('unauthorized') and return 0
+    $c->authenticate();
+    $c->forward('forbidden') and return 0
         unless $c->user_exists;
 
     return 1;

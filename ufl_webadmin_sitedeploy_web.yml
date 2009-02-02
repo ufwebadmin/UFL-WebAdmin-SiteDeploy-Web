@@ -2,21 +2,16 @@
 name:         SiteDeploy
 encoding:     UTF-8
 default_view: HTML
+logout_uri:   http://login.gatorlink.ufl.edu/quit.cgi
 
-authentication:
+Plugin::Authentication:
   default_realm: users
   realms:
     users:
       credential:
-        class:         Password
-        password_type: none
+        class: +UFL::Authentication::Credential::GatorLink
       store:
         class: Null
-
-Controller::Authentication:
-  use_login_form:  0
-  use_environment: 1
-  logout_uri:      http://login.gatorlink.ufl.edu/quit.cgi
 
 View::HTML:
   PRE_CHOMP: 1
