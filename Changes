@@ -1,6 +1,6 @@
 This file documents the revision history for UFL::WebAdmin::SiteDeploy::Web.
 
-0.04
+0.04  Mon Feb  9 17:28:20 EST 2009
         - Remove use of UFL::Controller::Authentication in favor of
           UFL::Authentication::Credential::GatorLink
 
