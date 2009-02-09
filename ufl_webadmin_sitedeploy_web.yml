@@ -4,6 +4,10 @@ encoding:     UTF-8
 default_view: HTML
 logout_uri:   http://login.gatorlink.ufl.edu/quit.cgi
 
+Model::Repository:
+  type: Svn
+  uri: file:///var/svn/repos/websites
+
 Plugin::Authentication:
   default_realm: users
   realms:
@@ -18,3 +22,7 @@ View::HTML:
   WRAPPER:   wrapper.tt
   VARIABLES: &ttvariables
     datetime_format: %a, %b %e, %Y %l:%M %p
+    timeline_uri: http://trac.webadmin.ufl.edu/websites/timeline
+    browser_uri_pattern: http://trac.webadmin.ufl.edu/websites/browser/%s
+    log_uri_pattern: http://trac.webadmin.ufl.edu/websites/log/%s
+    revision_uri_pattern: http://trac.webadmin.ufl.edu/websites/changeset/%s

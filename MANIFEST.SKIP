@@ -28,3 +28,6 @@
 \.bak$
 \#$
 \.#
+
+# Runtime files and directories
+_local.yml$
