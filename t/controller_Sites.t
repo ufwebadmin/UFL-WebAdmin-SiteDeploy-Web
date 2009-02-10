@@ -2,7 +2,7 @@
 
 use strict;
 use warnings;
-use Test::More tests => 1 + 3 + 2*16;
+use Test::More tests => 1 + 3 + 2*17;
 use UFL::WebAdmin::SiteDeploy::TestRepository;
 
 use Test::WWW::Mechanize::Catalyst 'UFL::WebAdmin::SiteDeploy::Web';
@@ -30,18 +30,20 @@ UFL::WebAdmin::SiteDeploy::Web->model('Repository')->uri($TEST_REPO->repository_
 
 # Site with no outstanding changes
 {
-    local $ENV{REMOTE_USER} = 'dwc';
+    my $user = 'dwc';
+    local $ENV{REMOTE_USER} = $user;
 
     load_site($mech, 'www.ufl.edu', 0, 'Mon, Jun  9, 2008  5:40 PM', 'dwc', 'Create a tag');
-    deploy_site($mech, 'www.ufl.edu', 7);
+    deploy_site($mech, 'www.ufl.edu', 7, $user);
 }
 
 # Site with outstanding changes
 {
-    local $ENV{REMOTE_USER} = 'dwc';
+    my $user = 'dwc';
+    local $ENV{REMOTE_USER} = $user;
 
     load_site($mech, 'www.webadmin.ufl.edu', 1, 'Mon, Jun  9, 2008  5:40 PM', 'dwc', 'Create a tag');
-    deploy_site($mech, 'www.webadmin.ufl.edu', 8);
+    deploy_site($mech, 'www.webadmin.ufl.edu', 8, $user);
 }
 
 # Restore the old URI
@@ -65,7 +67,7 @@ sub load_site {
 }
 
 sub deploy_site {
-    my ($mech, $site, $revision) = @_;
+    my ($mech, $site, $revision, $user) = @_;
 
     my $message = $0 . ' ' . scalar(localtime);
     my $form = $mech->form_with_fields('message');
@@ -76,5 +78,6 @@ sub deploy_site {
     $mech->title_like(qr/$site/, 'looks like we are viewing a site');
     $mech->content_like(qr/Site deployed/, 'site appears to have been deployed');
     $mech->content_like(qr/>$revision</, 'page appears to have the right revision number');
+    $mech->content_like(qr|Deploying $site on behalf of $user|, 'page contains the default commit message');
     $mech->content_like(qr|$message|, 'page contains the commit message');
 }

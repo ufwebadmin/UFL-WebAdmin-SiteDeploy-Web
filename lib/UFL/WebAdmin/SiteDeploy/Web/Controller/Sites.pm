@@ -86,7 +86,7 @@ sub deploy : PathPart Chained('site') Args(0) {
     }
 
     # Build a message
-    my $message = 'Deploying ' . $site->id . ' on behalf of ' . $c->req->user->id . '.';
+    my $message = 'Deploying ' . $site->id . ' on behalf of ' . $c->user->username . '.';
     if (my $additional_message = $c->req->param('message')) {
         $message .= " Their message:\n\n$additional_message";
     }
