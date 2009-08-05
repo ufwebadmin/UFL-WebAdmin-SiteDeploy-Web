@@ -25,9 +25,8 @@ Require authentication for all pages.
 sub auto : Private {
     my ($self, $c) = @_;
 
-    $c->authenticate();
     $c->forward('forbidden') and return 0
-        unless $c->user_exists;
+        unless $c->authenticate();
 
     return 1;
 }
