@@ -1,6 +1,6 @@
 This file documents the revision history for UFL::WebAdmin::SiteDeploy::Web.
 
-0.06
+0.06  Wed Aug  5 16:52:14 EDT 2009
         - Switch to Catalyst::Authentication::Credential::Remote
 
 0.05  Tue Feb 10 10:59:50 EST 2009
