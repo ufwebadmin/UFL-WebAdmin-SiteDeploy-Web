@@ -13,7 +13,7 @@ Plugin::Authentication:
   realms:
     users:
       credential:
-        class: +UFL::Authentication::Credential::GatorLink
+        class: Remote
       store:
         class: Null
 
