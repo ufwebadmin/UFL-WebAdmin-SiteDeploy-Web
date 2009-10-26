@@ -1,7 +1,6 @@
 ---
 name:         SiteDeploy
 default_view: HTML
-logout_uri:   http://login.gatorlink.ufl.edu/quit.cgi
 
 Model::Repository:
   type: Svn
