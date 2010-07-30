@@ -1,6 +1,6 @@
 This file documents the revision history for UFL::WebAdmin::SiteDeploy::Web.
 
-0.08
+0.08  Fri Jul 30 18:03:08 EDT 2010
         - Update error handling to provide email notification
         - Check that sites are valid when displaying them in the list
 
