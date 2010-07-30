@@ -20,7 +20,7 @@ View::HTML:
   WRAPPER:   wrapper.tt
   VARIABLES: &ttvariables
     datetime_format: %a, %b %e, %Y %l:%M %p
-    timeline_uri: http://trac.webadmin.ufl.edu/websites/timeline
-    browser_uri_pattern: http://trac.webadmin.ufl.edu/websites/browser/%s
-    log_uri_pattern: http://trac.webadmin.ufl.edu/websites/log/%s
-    revision_uri_pattern: http://trac.webadmin.ufl.edu/websites/changeset/%s
+    timeline_uri: https://trac.webadmin.ufl.edu/websites/timeline
+    browser_uri_pattern: https://trac.webadmin.ufl.edu/websites/browser/%s
+    log_uri_pattern: https://trac.webadmin.ufl.edu/websites/log/%s
+    revision_uri_pattern: https://trac.webadmin.ufl.edu/websites/changeset/%s
