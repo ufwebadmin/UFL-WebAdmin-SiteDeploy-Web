@@ -14,24 +14,30 @@
   </thead>
   <tbody>
   [% FOREACH site IN sites %]
-    [% SET last_update = site.last_update %]
-    [% SET last_deployment = site.last_deployment %]
     <tr[% IF (loop.count - 1) % 2 == 0 %] class="even"[% END %]>
       <td><a href="[% site.uri | html %]">[% site.id | html %]</a></td>
+    [% IF site.is_valid %]
+      [% SET last_update = site.last_update %]
+      [% SET last_deployment = site.last_deployment %]
       <td class="[% site.has_outstanding_changes ? 'pending' : 'deployed' | html %]"><a href="[% c.uri_for(c.controller('Sites').action_for('view'), [ site.id ]) | html %]">[% site.has_outstanding_changes ? 'Pending' : 'Deployed' | html %]</a></td>
       <td>
-    [% FILTER indent('        ') %]
+      [% FILTER indent('        ') %]
 
-      [% INCLUDE includes/last_commit.tt commit = last_update %]
-    [% END -%]
+        [% INCLUDE includes/last_commit.tt commit = last_update %]
+      [% END -%]
       </td>
       <td>
-    [% FILTER indent('        ') %]
+      [% FILTER indent('        ') %]
 
-      [% INCLUDE includes/last_commit.tt commit = last_deployment %]
-    [% END -%]
+        [% INCLUDE includes/last_commit.tt commit = last_deployment %]
+      [% END -%]
       </td>
+    [% ELSE %]
+      <td class="invalid" title="Site does not appear valid; make sure it follows the standard repository structure">Invalid</td>
+      <td>-</td>
+      <td>-</td>
     </tr>
+    [% END %]
   [% END %]
   </tbody>
 </table>

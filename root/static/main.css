@@ -260,7 +260,7 @@ padding:5px;
 text-align:left;
 }
 
-#content td.deployed,#content td.pending {
+#content td.deployed,#content td.pending,#content td.invalid {
 padding-left:20px;
 }
 
@@ -427,4 +427,8 @@ background:transparent url(images/deployed.png) no-repeat left center;
 
 .pending {
 background:transparent url(images/pending.png) no-repeat left center;
+}
+
+.invalid {
+background:transparent url(images/invalid.png) no-repeat left center;
 }

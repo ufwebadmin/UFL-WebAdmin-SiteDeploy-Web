@@ -20,7 +20,7 @@ requires 'Catalyst::View::TT';
 requires 'Moose';
 requires 'Moose::Object';
 requires 'parent';
-requires 'UFL::WebAdmin::SiteDeploy' => '0.07';
+requires 'UFL::WebAdmin::SiteDeploy' => '0.13';
 requires 'UFL::WebAdmin::SiteDeploy::Site';
 requires 'UFL::WebAdmin::SiteDeploy::Types';
 requires 'VCI';
