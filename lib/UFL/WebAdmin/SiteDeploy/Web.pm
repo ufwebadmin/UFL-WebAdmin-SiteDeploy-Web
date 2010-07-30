@@ -4,12 +4,13 @@ use strict;
 use warnings;
 use parent qw/Catalyst/;
 
-our $VERSION = '0.07';
+our $VERSION = '0.08_01';
 
 __PACKAGE__->setup(qw/
     ConfigLoader
     Authentication
     AutoRestart
+    ErrorCatcher
     StackTrace
     Static::Simple
     Unicode::Encoding
@@ -27,6 +28,34 @@ UFL::WebAdmin::SiteDeploy::Web - Web site deployment via a Web interface
 
 This application interfaces with L<UFL::WebAdmin::SiteDeploy> and a
 Subversion repository to simplify releasing changes to a Web site.
+
+=head1 METHODS
+
+=head2 finalize_error
+
+Output a more friendly error page. This is based loosely on
+L<Catalyst::Plugin::CustomErrorMessage>.
+
+=cut
+
+sub finalize_error {
+    my $c = shift;
+
+    # Allow ErrorCatcher to run
+    $c->next::method(@_);
+
+    # Allow StackTrace to take over in debug mode
+    return if $c->debug;
+
+    # Forward to the more friendly error page
+    eval {
+        $c->res->body($c->view('HTML')->render($c, 'error.tt'));
+    };
+    if ($@) {
+        # Handle view-level errors by logging them
+        $c->log->error($@);
+    }
+}
 
 =head1 SEE ALSO
 

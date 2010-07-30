@@ -12,6 +12,7 @@ requires 'Catalyst::Model';
 requires 'Catalyst::Plugin::Authentication';
 requires 'Catalyst::Plugin::AutoRestart';
 requires 'Catalyst::Plugin::ConfigLoader';
+requires 'Catalyst::Plugin::ErrorCatcher';
 requires 'Catalyst::Plugin::StackTrace';
 requires 'Catalyst::Plugin::Static::Simple';
 requires 'Catalyst::Plugin::Unicode::Encoding';
