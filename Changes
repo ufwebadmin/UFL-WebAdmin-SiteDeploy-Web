@@ -1,6 +1,6 @@
 This file documents the revision history for UFL::WebAdmin::SiteDeploy::Web.
 
-0.09
+0.09  Fri Sep 17 11:28:17 EDT 2010
         - Update configuration to fix error with some YAML parsers
 
 0.08  Fri Jul 30 18:03:08 EDT 2010
